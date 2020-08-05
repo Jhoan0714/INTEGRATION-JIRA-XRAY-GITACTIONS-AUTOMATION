@@ -8,7 +8,7 @@ ${BROWSER}      Chrome
 
 *** Test Cases ***
 
-Valid Search on Google Oscar
+Valid Search on Google
     Given Open Browser to Google page
     And Input Username
     When Click Serach
@@ -33,10 +33,10 @@ Input Username
 Click Serach
     Press Keys    xpath://*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input    ENTER
 Search Page Should Be Open
-    Title Should Be    Test - Google Search
+    Title Should Be    Google
 
 Input random text
     Input Text    xpath://*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input    dhjfajsh
 
 Serach page should be not founded
-    Title Should Be    dhjfajshdgfkaj - Google Search
+    Title Should Be    Google
