@@ -13,6 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     name: Run Robot Framework Tests
     steps:
+        run:  
+              sudo mkdir ${{ github.workspace }}/reports
+              sudo chmod -R 777 ${{ github.workspace }}/reports
+    steps:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Robot Framework
