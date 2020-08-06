@@ -14,7 +14,6 @@ jobs:
     name: Run Robot Framework Tests
     steps:
       - uses: actions/checkout@v2
-      - run:  sudo mkdir ${{ github.workspace }}/reports
       - run:  sudo chmod -R 777 ${{ github.workspace }}/reports
       - name: Robot Framework
         uses: joonvena/robotframework-docker-action@v0.1
