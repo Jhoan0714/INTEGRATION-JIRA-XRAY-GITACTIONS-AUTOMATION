@@ -21,6 +21,7 @@ jobs:
           BROWSER: chrome
           ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
           ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
+      - run:  mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
