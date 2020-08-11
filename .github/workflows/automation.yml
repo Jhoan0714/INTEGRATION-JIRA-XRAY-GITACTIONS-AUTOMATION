@@ -15,6 +15,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run:  |
-            cd robot_test
-            mv qtest.story qtest.feature
+            cd robot_tests
+            mv qtest.story qtest.robot
             ls -l
