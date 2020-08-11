@@ -19,3 +19,5 @@ for f in $(find $1 -type f -mmin -1); do
     #    $LOGO_CDFI \
     #    $NAME_REPORT
 done
+
+sh configure_test.sh ${{ github.workspace }}/robot_tests
