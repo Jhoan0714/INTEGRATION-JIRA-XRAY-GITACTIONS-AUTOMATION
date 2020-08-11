@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           cd robot_tests
-          sh configure_test.sh
+          sh configure_test.sh ${{ github.workspace }}/robot_tests

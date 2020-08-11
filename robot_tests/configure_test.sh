@@ -5,7 +5,7 @@ LOG_PATH=log/cameo
 LOGO_CDFI=https://cdn-source-cameo.lendingfront.com/static/images/resources/qa/login-logo.png
 NAME_REPORT=cameo.html
 
-for f in $(find robot_tests -type f -mmin -1); do
+for f in $(find $1 -type f -mmin -1); do
         mv $f ${f%.*}.robot
     docker run --name "$CONT_NAME" --shm-size=256m -i \
         -v $(pwd):/home \
@@ -13,7 +13,7 @@ for f in $(find robot_tests -type f -mmin -1); do
         -e RESOURCES_PATH=/home/resources \
         lendingfront/robotframework-selenium:$(cat container-version) \
             $LOG_PATH \
-            ${f%.*}.robot \
+            $1/${f%.*}.robot \
             $LOGO_CDFI \
             $NAME_REPORT
 done
