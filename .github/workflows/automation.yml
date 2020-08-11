@@ -16,20 +16,4 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           cd robot_tests
-          sudo apt-get install rename
-          rename 's/.story/.robot/' *
-          ls -l
-          sudo chmod -R 777 ${{ github.workspace }}/reports
-      - name: Robot Framework
-        uses: joonvena/robotframework-docker-action@v0.1
-        env:
-          BROWSER: chrome
-          ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
-          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
-      - run:  mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
-
+          run ./configure-test.sh
