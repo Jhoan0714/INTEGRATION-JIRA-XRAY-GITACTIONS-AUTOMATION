@@ -11,7 +11,7 @@ for f in $(find $1 -type f -mmin -1); do
         -v $(pwd):/home \
         -e BUILD_NUMBER=$BUILD_NUMBER \
         -e RESOURCES_PATH=/home/resources \
-        lendingfront/robotframework-selenium:$(cat container-version) \
+        lendingfront/robotframework-selenium:2.5.1 \
             $LOG_PATH \
             $1/${f%.*}.robot \
             $LOGO_CDFI \
