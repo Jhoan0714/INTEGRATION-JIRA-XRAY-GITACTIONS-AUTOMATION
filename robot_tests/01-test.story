@@ -21,7 +21,7 @@ Open Browser to Google page
     Title Should Be    Google
 
 Input Username
-    Input Text    xpath://*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input    Test
+    Input Text    xpath://*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input     Test
 
 Click Serach
     Press Keys    xpath://*[@id="tsf"]/div[2]/div[1]/div[1]/div/div[2]/input    ENTER
