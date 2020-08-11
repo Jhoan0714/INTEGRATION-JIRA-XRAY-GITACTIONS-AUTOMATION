@@ -17,7 +17,7 @@ jobs:
       - run: |
           cd robot_tests
           sudo apt-get install rename
-          rename -n 's/.story/.robot/' \*.robot
+          rename 's/.story/.robot/' *
           ls -l
           sudo chmod -R 777 ${{ github.workspace }}/reports
       - name: Robot Framework
