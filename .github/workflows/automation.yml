@@ -16,7 +16,8 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           cd robot_tests
-          for f in *.story; do mv -- "$f" "${f%.story}.robot"
+          sudo apt-get install rename
+          rename -n 's/.story/.robot/' \*.robot
           ls -l
           sudo chmod -R 777 ${{ github.workspace }}/reports
       - name: Robot Framework
