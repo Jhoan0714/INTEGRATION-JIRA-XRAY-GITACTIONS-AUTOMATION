@@ -16,4 +16,4 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           cd robot_tests
-          run ./configure-test.sh
+          sh configure-test.sh
