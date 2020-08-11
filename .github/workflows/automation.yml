@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           cd robot_tests
-          mv *.story *.robot
+          rename 's/.story/.robot/' *
           ls -l
           sudo chmod -R 777 ${{ github.workspace }}/reports
       - name: Robot Framework
