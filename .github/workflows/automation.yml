@@ -6,7 +6,7 @@ name: Github actions robot framework integration jira
 # events but only for the master branch
 on:
   push:
-    branches: [ staging ]
+    branches: [staging]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   robot_test:
@@ -14,7 +14,21 @@ jobs:
     name: Run Robot Framework Tests
     steps:
       - uses: actions/checkout@v2
-      - run:  |
-            cd robot_tests
-            mv qtest.story qtest.robot
-            ls -l
+      - run: |
+          cd robot_tests
+          mv qtest.story qtest.robot
+          ls -l
+          sudo chmod -R 777 ${{ github.workspace }}/reports
+      - name: Robot Framework
+        uses: joonvena/robotframework-docker-action@v0.1
+        env:
+          BROWSER: chrome
+          ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
+          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
+      - run:  mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+
