@@ -7,14 +7,15 @@ NAME_REPORT=cameo.html
 
 for f in $(find $1 -type f -mmin -1); do
     mv $f ${f%.*}.robot
-    docker rm -f "$CONT_NAME"
-    docker run --name "$CONT_NAME" --shm-size=256m -i \
-        -v $(pwd):/home \
-        -e BUILD_NUMBER=$BUILD_NUMBER \
-        -e RESOURCES_PATH=/home/resources \
-        lendingfront/robotframework-selenium:2.5.1 \
-        $LOG_PATH \
-        ${f%.*}.robot \
-        $LOGO_CDFI \
-        $NAME_REPORT
+    ls -l
+    #docker rm -f "$CONT_NAME"
+    #docker run --name "$CONT_NAME" --shm-size=256m -i \
+    #    -v $(pwd):/home \
+    #    -e BUILD_NUMBER=$BUILD_NUMBER \
+    #    -e RESOURCES_PATH=/home/resources \
+    #    lendingfront/robotframework-selenium:2.5.1 \
+    #    $LOG_PATH \
+    #    ${f%.*}.robot \
+    #    $LOGO_CDFI \
+    #    $NAME_REPORT
 done
