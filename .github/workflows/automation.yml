@@ -15,7 +15,5 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          cd /home/runner/work/INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION/robot_tests
-          ls -l
-          cd /home/runner/work/INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION/INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION/robot_tests
-          
+            echo ${{ env.GIT_DIFF }}
+#git diff --name-only 44e48d1c0853223a0653cb HEAD
