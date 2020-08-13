@@ -20,6 +20,8 @@ jobs:
             curl -s $COMMIT_URL  | jq . > COMMIT_CONTEXT.json
             MESSAGE=$(jq .commit.message COMMIT_CONTEXT.json)
             FILE=$(jq .files[0].filename COMMIT_CONTEXT.json)
+            echo "::set-env name=MESSAGE::$MESSAGE"
+            echo "::set-env name=FILE::$FILE"
      - name: Execute Test
        run: |
             echo $MESSAGE
