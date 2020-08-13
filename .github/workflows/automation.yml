@@ -15,6 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          cd ..
+          cd /home/runner/work/INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION/robot_tests
           ls -l
+          cd /home/runner/work/INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION/INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION/robot_tests
           
