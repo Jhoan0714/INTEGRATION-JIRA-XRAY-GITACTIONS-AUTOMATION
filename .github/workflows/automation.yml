@@ -17,11 +17,11 @@ jobs:
           GITHUB_CONTEXT: ${{ tojson(github) }}
           ENVIRONMENT: ${{ github.event.push.ref }}
        run: |
-            ls -l
             COMMIT=${{ github.event.repository.commits_url }}
             SHA="/${{ github.sha }}"
             COMMIT_URL=$(echo "${COMMIT/{\/sha\}/$SHA}")
-            curl -s $COMMIT_URL  | jq . > Commit.json
-            cat Commit.json
+            curl -s $COMMIT_URL  | jq . > COMMIT_CONTEXT.json
+            jq .commit.message COMMIT_CONTEXT.json
+            jq .files[0].filename COMMIT_CONTEXT.json
 
 #echo "$GITHUB_CONTEXT"
