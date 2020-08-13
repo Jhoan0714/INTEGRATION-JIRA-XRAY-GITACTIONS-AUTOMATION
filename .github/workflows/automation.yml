@@ -9,10 +9,13 @@ on:
     branches: [staging]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  robot_test:
+  build:
     runs-on: ubuntu-latest
-    name: Run Robot Framework Tests
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-            git diff --name-only ${GITHUB_SHA} HEAD
+     - name: Dump GitHub context
+       env:
+          GITHUB_CONTEXT: ${{ tojson(github) }}
+          ENVIRONMENT: ${{ github.event.deployment.environment }}
+       run: |
+          echo "$GITHUB_CONTEXT"
+          echo $ENVIRONMENT
