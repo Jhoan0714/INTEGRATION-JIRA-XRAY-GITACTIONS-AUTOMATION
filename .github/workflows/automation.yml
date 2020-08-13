@@ -21,7 +21,9 @@ jobs:
             SHA="/${{ github.sha }}"
             COMMIT_URL=$(echo "${COMMIT/{\/sha\}/$SHA}")
             curl -s $COMMIT_URL  | jq . > COMMIT_CONTEXT.json
-            jq .commit.message COMMIT_CONTEXT.json
-            jq .files[0].filename COMMIT_CONTEXT.json
+            MESSAGE=$(jq .commit.message COMMIT_CONTEXT.json)
+            FILE=$(jq .files[0].filename COMMIT_CONTEXT.json)
+            echo $MESSAGE
+            echo $FILE
 
 #echo "$GITHUB_CONTEXT"
