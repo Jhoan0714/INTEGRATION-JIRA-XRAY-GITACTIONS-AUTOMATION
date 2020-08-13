@@ -15,7 +15,7 @@ jobs:
      - name: Dump GitHub context
        env:
           GITHUB_CONTEXT: ${{ tojson(github) }}
-          ENVIRONMENT: ${{ github.event.push.environment }}
+          ENVIRONMENT: ${{ github.event.push.ref }}
        run: |
             echo $ENVIRONMENT
 #echo "$GITHUB_CONTEXT"
