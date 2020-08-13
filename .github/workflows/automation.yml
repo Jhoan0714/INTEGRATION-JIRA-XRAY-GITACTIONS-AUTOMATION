@@ -17,5 +17,5 @@ jobs:
           GITHUB_CONTEXT: ${{ tojson(github) }}
           ENVIRONMENT: ${{ github.event.deployment.environment }}
        run: |
-          echo "$GITHUB_CONTEXT"
-          echo $ENVIRONMENT
+            echo $ENVIRONMENT
+#echo "$GITHUB_CONTEXT"
