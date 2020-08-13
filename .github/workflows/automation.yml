@@ -22,7 +22,6 @@ jobs:
             echo "::set-env name=FILE::$(jq .files[0].filename COMMIT_CONTEXT.json)"
      - name: Execute Test
        run: |
-            echo $MESSAGE
-            echo $FILE
+            basename $FILE
 
 #echo "$GITHUB_CONTEXT"
