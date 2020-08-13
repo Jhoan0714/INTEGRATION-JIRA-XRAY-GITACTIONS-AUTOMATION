@@ -20,8 +20,9 @@ jobs:
             curl -s $COMMIT_URL  | jq . > COMMIT_CONTEXT.json
             echo "::set-env name=MESSAGE::$(jq .commit.message COMMIT_CONTEXT.json)"
             echo "::set-env name=FILE::$(jq .files[0].filename COMMIT_CONTEXT.json)"
+            echo "::set-env name=FILE_NAME::$(basename $FILE)"
      - name: Execute Test
        run: |
-            basename $FILE
+            echo $FILE_NAME
 
 #echo "$GITHUB_CONTEXT"
