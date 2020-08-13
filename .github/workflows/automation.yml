@@ -12,10 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-     - name: Dump GitHub context
-       env:
-          GITHUB_CONTEXT: ${{ tojson(github) }}
-          ENVIRONMENT: ${{ github.event.push.ref }}
+     - name: Extracts Parameters Jira
        run: |
             COMMIT=${{ github.event.repository.commits_url }}
             SHA="/${{ github.sha }}"
