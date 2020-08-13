@@ -11,7 +11,7 @@ ${BROWSER}      Chrome
 Valid Search on Google
     Given Open Browser to Google page
     And Input Username
-    When Click Serach
+    When Click Serach 
     Then Search Page Should Be Open
     [Teardown]                           Close Browser
 
