@@ -17,5 +17,5 @@ jobs:
           GITHUB_CONTEXT: ${{ tojson(github) }}
           ENVIRONMENT: ${{ github.event.push.ref }}
        run: |
-            echo ${{ github.event.ref }}
+            echo ${{ github.event.repository.commits_url }}
 #echo "$GITHUB_CONTEXT"
