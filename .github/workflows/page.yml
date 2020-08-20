@@ -24,7 +24,7 @@ jobs:
       - run:  |
               mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
               cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
-              find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.js)/g"
+              find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.html)/g"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
