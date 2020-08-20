@@ -24,7 +24,6 @@ jobs:
       - run:  |
               mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
               cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
-              find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/<body><div id="loginForm"><span>Enter your github credentials:</span><form onsubmit="event.preventDefault(); onSubmit(this);"><input type="text" id="login" name="login" placeholder="Github username" required><input type="password" id="password" name="login" placeholder="Github password/token" required><input type="submit" value="Access"></form></div><script> window.page = '${page}'; </script><script src="js/github.js"></script>/g"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
