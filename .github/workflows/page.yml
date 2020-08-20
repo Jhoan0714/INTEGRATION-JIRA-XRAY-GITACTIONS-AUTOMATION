@@ -1,0 +1,32 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Github actions robot framework integration jira
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [ staging ]
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  robot_test:
+    runs-on: ubuntu-latest
+    name: Run Robot Framework Tests
+    steps:
+      - uses: actions/checkout@v2
+      - run:  sudo chmod -R 777 ${{ github.workspace }}/reports
+      - name: Robot Framework
+        uses: joonvena/robotframework-docker-action@v0.1
+        env:
+          BROWSER: chrome
+          ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
+          ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
+      - run:  |
+              mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
+              cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
+              find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/<body><div id="loginForm"><span>Enter your github credentials:</span><form onsubmit="event.preventDefault(); onSubmit(this);"><input type="text" id="login" name="login" placeholder="Github username" required><input type="password" id="password" name="login" placeholder="Github password/token" required><input type="submit" value="Access"></form></div><script> window.page = '${page}'; </script><script src="js/github.js"></script>/g"
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
