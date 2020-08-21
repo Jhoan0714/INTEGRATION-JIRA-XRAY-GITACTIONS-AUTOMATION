@@ -24,14 +24,15 @@ jobs:
       - run:  |
               mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
               cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
-              cd ${{ github.workspace }}/reports
+              cp ${{ github.workspace }}/reports/index.html ${{ github.workspace }}/index.html
+              cp ${{ github.workspace }}/reports/log.html ${{ github.workspace }}/log.html
               git config --global user.email "jflopez52@ucatolica.edu.co"
               git config --global user.name "Jhoan Lopez"
               git checkout --orphan gh-pages-private
               git rm --cached -rf .
-              git add index.html
-              git add log.html
-              git add js
+              git add ${{ github.workspace }}/index.html
+              git add ${{ github.workspace }}/log.html
+              git add ${{ github.workspace }}/js
               git commit -m "Test Pages"
               git push origin gh-pages-private
 #find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.lp)/g"
