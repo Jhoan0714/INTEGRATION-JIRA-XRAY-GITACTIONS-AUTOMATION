@@ -31,7 +31,7 @@ jobs:
               git add ${{ github.workspace }}/reports/index.html
               git add ${{ github.workspace }}/reports/log.html
               git add ${{ github.workspace }}/reports/js
-              git commit -m "Test"
+              git commit -m "Test Pages"
               git push origin gh-pages-private
 #find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.lp)/g"
       - name: Deploy
