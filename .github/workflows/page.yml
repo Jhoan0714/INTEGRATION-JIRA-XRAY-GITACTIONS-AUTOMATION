@@ -37,7 +37,9 @@ jobs:
               git push origin gh-pages-private
               cp -r ${{ github.workspace }}/reports ${{ github.workspace }}/reports-copy
               cp ${{ github.workspace }}/js/authentication.html ${{ github.workspace }}/reports-copy/index.html
+              sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/reports-copy/index.html
               cp ${{ github.workspace }}/js/authentication.html ${{ github.workspace }}/reports-copy/log.html
+              sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/reports-copy/log.html
 #find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.lp)/g"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3

@@ -3,41 +3,46 @@ const repo = 'INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION';
 const branch = 'gh-pages-private';
 
 function onSubmit(form) {
-    // 1
-    const login = form.username || form.querySelector('#login').value;
-    const password = form.token || form.querySelector('#password').value;
-  
-    // 2
-    const token = btoa(`${login}:${password}`);
-    const request = new Request(
-      `https://api.github.com/repos/${org}/${repo}/contents/${page}?ref=${branch}`,
-      {
-        method: 'GET',
-        credentials: 'omit',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Basic ${token}`
-        },
-      });
-  
-    // 3
-    fetch(request)
-      .then(function (response) {
-        if (response.status !== 200) { // 4
-          document.querySelector('#loginForm').innerHTML = `Failed to load document (status: ${response.status})`;
-        } else {
-          response.json()
-            .then(function (json) { // 5
-              const content = json.encoding === 'base64' ? atob(json.content) : json.content;
-  
-              // 6
-              const startIdx = content.indexOf('<body');
-              document.body.innerHTML = content.substring(
-                  content.indexOf('>', startIdx) + 1,
-                  content.indexOf('</body>'));
-            });
-        }
-      });
-  
-      return false;
-  }
+  // 1
+  const login = form.username || form.querySelector('#login').value;
+  const password = form.token || form.querySelector('#password').value;
+
+  // 2
+  const token = btoa(`${login}:${password}`);
+  const request = new Request(
+    `https://api.github.com/repos/${org}/${repo}/contents/${page}?ref=${branch}`,
+    {
+      method: 'GET',
+      credentials: 'omit',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Basic ${token}`
+      },
+    });
+
+  // 3
+  fetch(request)
+    .then(function (response) {
+      if (response.status !== 200) { // 4
+        document.querySelector('#loginForm').innerHTML = `Failed to load document (status: ${response.status})`;
+      } else {
+        response.json()
+          .then(function (json) { // 5
+            const content = json.encoding === 'base64' ? atob(json.content) : json.content;
+
+            // 6
+            const startHeader = content.indexOf('<head');
+            document.head.innerHTML = content.substring(
+              content.indexOf('>', startHeader) + 1,
+              content.indexOf('</head>'));
+
+            const startBody = content.indexOf('<body');
+            document.body.innerHTML = content.substring(
+              content.indexOf('>', startBody) + 1,
+              content.indexOf('</body>'));
+          });
+      }
+    });
+
+  return false;
+}
