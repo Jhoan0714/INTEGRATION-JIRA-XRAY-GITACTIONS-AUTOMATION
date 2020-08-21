@@ -26,10 +26,8 @@ jobs:
               cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
               cp ${{ github.workspace }}/reports/index.html ${{ github.workspace }}/index.html
               cp ${{ github.workspace }}/reports/log.html ${{ github.workspace }}/log.html
-              cat ${{ github.workspace }}/index.html
-              sed -i -e ':a' -e 'N' -e '$!ba' -e 's/try {\n          var topsuite = window.testdata.suite();\n      } catch (error) {\n          addJavaScriptDisabledWarning(error);\n          return;\n      }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/index.html
-              cat ${{ github.workspace }}/index.html
-              sed -i -e ':a' -e 'N' -e '$!ba' -e 's/try {\n          var topsuite = window.testdata.suite();\n      } catch (error) {\n          addJavaScriptDisabledWarning(error);\n          return;\n      }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/log.html
+              sed -i -e ':a' -e 'N' -e '$!ba' -e 's/try {\n            var topsuite = window.testdata.suite();\n        } catch (error) {\n            addJavaScriptDisabledWarning(error);\n            return;\n        }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/index.html
+              sed -i -e ':a' -e 'N' -e '$!ba' -e 's/try {\n            var topsuite = window.testdata.suite();\n        } catch (error) {\n            addJavaScriptDisabledWarning(error);\n            return;\n        }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/log.html
               git config --global user.email "jflopez52@ucatolica.edu.co"
               git config --global user.name "Jhoan Lopez"
               git checkout --orphan gh-pages-private
