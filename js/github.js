@@ -1,6 +1,6 @@
 const org = 'Jhoan0714';
 const repo = 'INTEGRATION-JIRA-XRAY-GITACTIONS-AUTOMATION';
-const branch = 'gh-pages';
+const branch = 'gh-pages-private';
 
 function onSubmit(form) {
     // 1
