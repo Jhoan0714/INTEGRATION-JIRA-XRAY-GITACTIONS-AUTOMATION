@@ -31,11 +31,6 @@ function onSubmit(form) {
             const content = json.encoding === 'base64' ? atob(json.content) : json.content;
 
             // 6
-            const startHeader = content.indexOf('<head');
-            document.head.innerHTML = content.substring(
-              content.indexOf('>', startHeader) + 1,
-              content.indexOf('</head>'));
-
             const startBody = content.indexOf('<body');
             document.body.innerHTML = content.substring(
               content.indexOf('>', startBody) + 1,
