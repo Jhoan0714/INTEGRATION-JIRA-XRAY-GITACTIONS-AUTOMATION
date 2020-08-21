@@ -25,10 +25,6 @@ jobs:
               mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
               cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
               cp ${{ github.workspace }}/reports/log.html ${{ github.workspace }}/log.html
-              sed -e ':a' -e 'N' -e '$!ba' -e 's/try {\n        var topsuite = window.testdata.suite();\n    } catch (error) {\n        addJavaScriptDisabledWarning(error);\n        return;\n    }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/reports/index.html > ${{ github.workspace }}/index.html
-              sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/index.html
-              sed -e ':a' -e 'N' -e '$!ba' -e 's/try {\n        var topsuite = window.testdata.suite();\n    } catch (error) {\n        addJavaScriptDisabledWarning(error);\n        return;\n    }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/reports/log.html > ${{ github.workspace }}/log.html
-              sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/log.html
               git config --global user.email "jflopez52@ucatolica.edu.co"
               git config --global user.name "Jhoan Lopez"
               git checkout --orphan gh-pages-private
@@ -47,3 +43,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports-copy
+#sed -e ':a' -e 'N' -e '$!ba' -e 's/try {\n        var topsuite = window.testdata.suite();\n    } catch (error) {\n        addJavaScriptDisabledWarning(error);\n        return;\n    }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/reports/index.html > ${{ github.workspace }}/index.html
+#sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/index.html
+#sed -e ':a' -e 'N' -e '$!ba' -e 's/try {\n        var topsuite = window.testdata.suite();\n    } catch (error) {\n        addJavaScriptDisabledWarning(error);\n        return;\n    }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/reports/log.html > ${{ github.workspace }}/log.html
+#sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/log.html
