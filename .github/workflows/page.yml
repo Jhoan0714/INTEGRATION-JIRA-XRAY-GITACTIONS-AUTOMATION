@@ -28,7 +28,7 @@ jobs:
               git config --global user.name "Jhoan Lopez"
               git checkout --orphan gh-pages-private
               git rm --cached -rf .
-              git add ${{ github.workspace }}/reports
+              git add ${{ github.workspace }}/reports/
               git commit -m "Test"
               git push origin gh-pages-private
 #find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.lp)/g"
