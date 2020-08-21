@@ -24,7 +24,11 @@ jobs:
       - run:  |
               mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
               cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
-              find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.lp)/g"
+              git checkout -b gh-pages-private
+              git add ${{ github.workspace }}/reports
+              git commit -m "Test"
+              git push origin gh-pages-private
+#find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.lp)/g"
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
