@@ -24,6 +24,8 @@ jobs:
       - run:  |
               mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
               cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
+              git config --global user.email "jflopez52@ucatolica.edu.co"
+              git config --global user.name "Jhoan Lopez"
               git checkout -b gh-pages-private
               git add ${{ github.workspace }}/reports
               git commit -m "Test"
