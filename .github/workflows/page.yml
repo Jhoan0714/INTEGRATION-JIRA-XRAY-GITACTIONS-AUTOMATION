@@ -6,7 +6,7 @@ name: Github actions robot framework integration jira
 # events but only for the master branch
 on:
   push:
-    branches: [ staging ]
+    branches: [staging]
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   robot_test:
@@ -14,37 +14,22 @@ jobs:
     name: Run Robot Framework Tests
     steps:
       - uses: actions/checkout@v2
-      - run:  sudo chmod -R 777 ${{ github.workspace }}/reports
+      - run: sudo chmod -R 777 ${{ github.workspace }}/reports
       - name: Robot Framework
         uses: joonvena/robotframework-docker-action@v0.1
         env:
           BROWSER: chrome
           ROBOT_TESTS_DIR: ${{ github.workspace }}/robot_tests
           ROBOT_REPORTS_DIR: ${{ github.workspace }}/reports
-      - run:  |
-              mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
-              cp -r ${{ github.workspace }}/js ${{ github.workspace }}/reports/js
-              cp ${{ github.workspace }}/reports/log.html ${{ github.workspace }}/log.html
-              cp ${{ github.workspace }}/reports/index.html ${{ github.workspace }}/index.html
-              git config --global user.email "jflopez52@ucatolica.edu.co"
-              git config --global user.name "Jhoan Lopez"
-              git checkout --orphan gh-pages-private
-              git rm --cached -rf .
-              git add ${{ github.workspace }}/index.html
-              git add ${{ github.workspace }}/log.html
-              git add ${{ github.workspace }}/js
-              git commit -m "Test Pages"
-              git push origin gh-pages-private
-              cp -r ${{ github.workspace }}/reports ${{ github.workspace }}/reports-copy
-              cp ${{ github.workspace }}/js/authentication.html ${{ github.workspace }}/reports-copy/index.html
-              cp ${{ github.workspace }}/js/authentication.html ${{ github.workspace }}/reports-copy/log.html
-#find ${{ github.workspace }}/reports/ -name "*.html" -print | xargs sed -i "s/<body>/$(cat ${{ github.workspace }}/js/authentication.lp)/g"
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - run: |
+          mv ${{ github.workspace }}/reports/report.html ${{ github.workspace }}/reports/index.html
+      - name: Public Reports
+        uses: jakejarvis/s3-sync-action@master
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports-copy
-#sed -e ':a' -e 'N' -e '$!ba' -e 's/try {\n        var topsuite = window.testdata.suite();\n    } catch (error) {\n        addJavaScriptDisabledWarning(error);\n        return;\n    }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/reports/index.html > ${{ github.workspace }}/index.html
-#sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/index.html
-#sed -e ':a' -e 'N' -e '$!ba' -e 's/try {\n        var topsuite = window.testdata.suite();\n    } catch (error) {\n        addJavaScriptDisabledWarning(error);\n        return;\n    }/var topsuite = window.testdata.suite();/g' ${{ github.workspace }}/reports/log.html > ${{ github.workspace }}/log.html
-#sed -i 's/id="javascript-disabled"/id="javascript-error"/g' ${{ github.workspace }}/log.html
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SOURCE_DIR: '${{ github.workspace }}/reports'
+          DEST_DIR: '/cameo'
