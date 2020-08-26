@@ -12,10 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          RESOURCES=$(cat ${{ github.workspace }}/js/a.txt)
-          cd ${{ github.workspace }}/js
-          sed -i '1i $(cat ${{ github.workspace }}/js/a.txt)' b.txt
-          cat b.txt
+          cat ${{ github.workspace }}/js/a.txt ${{ github.workspace }}/js/b.txt > c.txt
+          cat c.txt
 #          cd js
 #          cat b.txt
 
