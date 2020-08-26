@@ -21,4 +21,9 @@ jobs:
         uses: atlassian/gajira-transition@master
         with:
           issue: 'AIJX-6'
-          transition: "En curso"
+          transition: "Listo"
+      - name: Comment on issue
+        uses: atlassian/gajira-comment@master
+        with:
+          issue: 'AIJX-6'
+          comment: Hello from GitHub actions
