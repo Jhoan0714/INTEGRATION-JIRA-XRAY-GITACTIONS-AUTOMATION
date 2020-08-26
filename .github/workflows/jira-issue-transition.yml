@@ -15,8 +15,8 @@ jobs:
           RESOURCES=$(cat ${{ github.workspace }}/js/a.txt)
           cat $RESOURCES
           sed -i '1i $RESOURCES' ${{ github.workspace }}/js/b.txt
-          cd js
-          cat b.txt
+#          cd js
+#          cat b.txt
 
 #        uses: atlassian/gajira-login@master
 #        env:
