@@ -7,16 +7,16 @@ name: Test Transition Issue
 
 jobs:
   test-transition-issue:
-    name: Transition Issue
     runs-on: ubuntu-latest
+    name: Transition Issue
     steps:
-      - name: Login
       - uses: actions/checkout@v2
-      - run:  |
-            RESOURCES=$(cat ${{ github.workspace }}/js/a.txt)
-            cat $RESOURCES
-            sed -i '1i $RESOURCES' ${{ github.workspace }}/js/b.txt
-            cat b.txt
+      - run: |
+          RESOURCES=$(cat ${{ github.workspace }}/js/a.txt)
+          cat $RESOURCES
+          sed -i '1i $RESOURCES' ${{ github.workspace }}/js/b.txt
+          cat b.txt
+
 #        uses: atlassian/gajira-login@master
 #        env:
 #          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
