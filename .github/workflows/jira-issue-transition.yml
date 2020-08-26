@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          cat ${{ github.workspace }}/js/a.txt ${{ github.workspace }}/js/b.txt > c.txt
+          cat ${{ github.workspace }}/js/a.txt \\n ${{ github.workspace }}/js/b.txt > c.txt
           cat c.txt
 #          cd js
 #          cat b.txt
