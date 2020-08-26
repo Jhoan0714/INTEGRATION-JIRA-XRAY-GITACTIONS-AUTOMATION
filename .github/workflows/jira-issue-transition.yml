@@ -14,8 +14,7 @@ jobs:
       - run: |
           RESOURCES=$(cat ${{ github.workspace }}/js/a.txt)
           cd ${{ github.workspace }}/js
-          cat b.txt
-          sed -i '1i $RESOURCES' b.txt
+          sed -i '1i $(cat ${{ github.workspace }}/js/a.txt)' b.txt
           cat b.txt
 #          cd js
 #          cat b.txt
