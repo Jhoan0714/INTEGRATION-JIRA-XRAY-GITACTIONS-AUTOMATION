@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Login
-        uses: actions/checkout@v2
-        run:  |
+      - uses: actions/checkout@v2
+      - run:  |
             RESOURCES=$(cat ${{ github.workspace }}/js/a.txt)
             cat $RESOURCES
             sed -i '1i $RESOURCES' ${{ github.workspace }}/js/b.txt
