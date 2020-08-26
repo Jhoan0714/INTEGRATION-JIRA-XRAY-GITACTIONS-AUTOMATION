@@ -11,19 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Login
-        uses: atlassian/gajira-login@master
-        env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-
-      - name: Transition issue
-        uses: atlassian/gajira-transition@master
-        with:
-          issue: 'AIJX-6'
-          transition: "Listo"
-      - name: Comment on issue
-        uses: atlassian/gajira-comment@master
-        with:
-          issue: 'AIJX-6'
-          comment: "Test Executed Successfully, Report: \n https://lf-automated-tests-framework.s3.amazonaws.com/cameo/cameo.html"
+        uses: actions/checkout@v2
+        run:  |
+            RESOURCES=$(cat ${{ github.workspace }}/js/a.txt)
+            cat $RESOURCES
+            sed -i '1i $RESOURCES' ${{ github.workspace }}/js/b.txt
+            cat b.txt
+#        uses: atlassian/gajira-login@master
+#        env:
+#          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+#          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+#          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+#
+#      - name: Transition issue
+#        uses: atlassian/gajira-transition@master
+#        with:
+#          issue: 'AIJX-6'
+#          transition: "Listo"
+#      - name: Comment on issue
+#        uses: atlassian/gajira-comment@master
+#        with:
+#          issue: 'AIJX-6'
+#          comment: "Test Executed Successfully, Report: \n https://lf-automated-tests-framework.s3.amazonaws.com/cameo/cameo.html"
