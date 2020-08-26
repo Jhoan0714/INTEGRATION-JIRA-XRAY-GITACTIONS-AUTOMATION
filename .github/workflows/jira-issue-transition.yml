@@ -26,4 +26,4 @@ jobs:
         uses: atlassian/gajira-comment@master
         with:
           issue: 'AIJX-6'
-          comment: Hello from GitHub actions
+          comment: Hello from GitHub actions https://lf-automated-tests-framework.s3.amazonaws.com/cameo/cameo.html
