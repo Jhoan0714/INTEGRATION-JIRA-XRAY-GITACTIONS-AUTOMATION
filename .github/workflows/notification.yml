@@ -13,9 +13,10 @@ jobs:
         env:
           SLACK_WEBHOOK: ${{ SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           SLACK_TITLE: 'Slack Notification Demo'
+          SLACK_CHANNEL: 'aut-team'
           SLACK_MESSAGE: 'Demo''ing the Slack Notification'
-          SLACK_COLOR: 439FE0
-          SLACK_ICON: 'https://cloudposse.com/wp-content/uploads/sites/29/2018/02/SquareLogo2.png'
+          SLACK_COLOR: '#efefef'
+          SLACK_ICON: 'https://github.com/<Github User>.png?size=48'
 #jobs:
 #  slack-notification:
 #    runs-on: ubuntu-latest
