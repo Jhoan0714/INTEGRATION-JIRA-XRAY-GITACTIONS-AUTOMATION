@@ -3,44 +3,16 @@ on:
   push:
     branches: [staging]
 jobs:
-  slackNotification:
-    name: Slack Notification
+  slack-notification:
     runs-on: ubuntu-latest
+    name: Sends a message to Slack when a push, a pull request or an issue is made
     steps:
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@master
+      - name: Send message to Slack API
+        uses: archive/github-actions-slack@master
         with:
-          status: custom
-          fields: workflow,job,commit,repo,ref,author,took
-          custom_payload: |
-            {
-                username: 'action-slack',
-                icon_emoji: ':octocat:',
-                attachments: [{
-                color: '${{ job.status }}' === 'success' ? 'good' : '${{ job.status }}' === 'failure' ? 'danger' : 'warning',
-                text: `Slack Notification in Git Action Test :oswaldo:`,
-              }]
-            }
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
-#name: slack-notification
-#on:
-#  push:
-#    branches: [staging]
-#jobs:
-#  slack-notification:
-#    runs-on: ubuntu-latest
-#    name: Sends a message to Slack when a push, a pull request or an issue is made
-#    steps:
-#      - name: Send message to Slack API
-#        uses: archive/github-actions-slack@master
-#        with:
-#          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-#          slack-channel: aut-team
-#          slack-username: rtCamp
-#          slack-color: '#3278BD'
-#          slack-text: "Slack Notification in Git Action Test :oswaldo:"
-#
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: aut-team
+          slack-text: "Slack Notification in Git Action Test :oswaldo:"
 #name: Notification PR in Slack
 #on:
 #  pull_request:
