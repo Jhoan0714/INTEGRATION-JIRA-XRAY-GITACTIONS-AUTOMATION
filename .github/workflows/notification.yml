@@ -12,7 +12,11 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: aut-team
-          slack-text: "Slack Notification in Git Action Test :oswaldo:"
+          color: good
+          slack-text: "Slack Notification in Git Action Test :oswaldo: 🤓"
+          slack-optional-as_user: true
+      - name: Result from "Send Message"
+          
 #name: Notification PR in Slack
 #on:
 #  pull_request:
