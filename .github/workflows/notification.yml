@@ -14,8 +14,7 @@ jobs:
           slack-channel: aut-team
           color: good
           slack-text: "Slack Notification in Git Action Test :oswaldo: 🤓"
-          slack-optional-as_user: true
-      - name: Result from "Send Message"
+          slack-optional-as_user: false
           
 #name: Notification PR in Slack
 #on:
