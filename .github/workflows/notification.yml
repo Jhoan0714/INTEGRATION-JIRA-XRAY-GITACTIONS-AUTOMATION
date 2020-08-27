@@ -3,17 +3,31 @@ on:
   push:
     branches: [staging]
 jobs:
-  slack-notification:
-    runs-on: ubuntu-latest
-    name: Sends a message to Slack when a push, a pull request or an issue is made
-    steps:
-      - name: Send message to Slack API
-        uses: archive/github-actions-slack@master
-        with:
-          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
-          slack-channel: aut-team
-          slack-text: "Slack Notification in Git Action Test :nerd_face:"
-          slack-color: red
+    slackNotification:
+      name: Slack Notification Demo
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@master
+      - name: Slack Notification Demo
+        uses: bryannice/gitactions-slack-notification@master
+        env:
+          SLACK_WEBHOOK: ${{ SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          SLACK_TITLE: 'Slack Notification Demo'
+          SLACK_MESSAGE: 'Demo''ing the Slack Notification'
+          SLACK_COLOR: "#439FE0"
+          SLACK_ICON: "https://cloudposse.com/wp-content/uploads/sites/29/2018/02/SquareLogo2.png"
+#jobs:
+#  slack-notification:
+#    runs-on: ubuntu-latest
+#    name: Sends a message to Slack when a push, a pull request or an issue is made
+#    steps:
+#      - name: Send message to Slack API
+#        uses: archive/github-actions-slack@master
+#        with:
+#          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+#          slack-channel: aut-team
+#          slack-text: "Slack Notification in Git Action Test :nerd_face:"
+#          slack-color: red
           
 #name: Notification PR in Slack
 #on:
