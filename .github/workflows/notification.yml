@@ -1,6 +1,4 @@
-on:
-  push:
-    branches: [staging]
+on: push
 name: Slack Notification Demo
 jobs:
     slackNotification:
