@@ -1,0 +1,34 @@
+name: slack-notification
+on:
+  push:
+    branches: [staging]
+jobs:
+  slack-notification:
+    runs-on: ubuntu-latest
+    name: Sends a message to Slack when a push, a pull request or an issue is made
+    steps:
+      - name: Send message to Slack API
+        uses: archive/github-actions-slack@master
+        with:
+          slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          slack-channel: aut-team
+          slack-text: "Slack Notification in Git Action Test :oswaldo:"
+#name: Notification PR in Slack
+#on:
+#  pull_request:
+#    types: [opened]
+#jobs:
+#  slackNotification:
+#    name: Slack Notification
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Slack Notification
+#        uses: rtCamp/action-slack-notify@master
+#        env:
+#          SLACK_CHANNEL: "#aut-team"
+#          SLACK_COLOR: "good"
+#          SLACK_ICON_EMOJI: ":github:"
+#          SLACK_TITLE: "Slack Notification"
+#          SLACK_MESSAGE: "https://github.com/lendingfront/automated-tests/pull/${{github.event.number}} \n ${{github.event.comment.body}}"
+#          SLACK_USERNAME: "PR - Automation Team"
+#          SLACK_FOOTER: "${GITHUB_REPOSITORY}"
