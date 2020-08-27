@@ -12,8 +12,10 @@ jobs:
         with:
           slack-bot-user-oauth-access-token: ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
           slack-channel: aut-team
+          slack-username: rtCamp
+          slack-color: '#3278BD'
           slack-text: "Slack Notification in Git Action Test :oswaldo:"
-          
+
 #name: Notification PR in Slack
 #on:
 #  pull_request:

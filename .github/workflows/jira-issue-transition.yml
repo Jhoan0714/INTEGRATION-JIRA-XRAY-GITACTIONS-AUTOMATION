@@ -1,7 +1,7 @@
 on:
   push:
     #Change staging
-    branches: [staging]
+    branches: [master]
 
 name: Test Transition Issue
 
