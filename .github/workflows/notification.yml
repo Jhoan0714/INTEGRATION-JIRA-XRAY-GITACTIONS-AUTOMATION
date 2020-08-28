@@ -1,4 +1,6 @@
-on: push
+on:
+  push:
+    branches: [staging]
 name: Slack Notification Demo
 jobs:
     slackNotification:
@@ -9,7 +11,7 @@ jobs:
       - name: Slack Notification Demo
         uses: bryannice/gitactions-slack-notification@master
         env:
-          SLACK_WEBHOOK: ${{ SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
           SLACK_TITLE: 'Slack Notification Demo'
           SLACK_CHANNEL: 'aut-team'
           SLACK_MESSAGE: 'Demo''ing the Slack Notification'
