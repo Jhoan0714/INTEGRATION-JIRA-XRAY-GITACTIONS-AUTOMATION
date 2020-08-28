@@ -11,7 +11,7 @@ jobs:
       - name: Slack Notification Demo
         env:
           SLACK_CHANNEL: "#aut-team"
-          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
           SLACK_TITLE: 'Slack Notification Demo'
           SLACK_MESSAGE: 'Demo ing the Slack Notification'
           SLACK_COLOR: '#efefef'
