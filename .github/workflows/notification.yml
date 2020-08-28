@@ -9,12 +9,12 @@ jobs:
       steps:
       - uses: actions/checkout@master
       - name: Slack Notification Demo
-        uses: staging
+        uses: bryannice/gitactions-slack-notification@master
         env:
           SLACK_WEBHOOK: https://hooks.slack.com/services/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
           SLACK_TITLE: 'Slack Notification Demo'
           SLACK_CHANNEL: 'aut-team'
-          SLACK_MESSAGE: 'Demo''ing the Slack Notification'
+          SLACK_MESSAGE: 'Demo ing the Slack Notification'
           SLACK_COLOR: '#efefef'
           SLACK_ICON: 'https://github.com/<Github User>.png?size=48'
 #jobs:
