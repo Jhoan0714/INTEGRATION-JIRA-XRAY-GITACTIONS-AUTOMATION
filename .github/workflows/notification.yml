@@ -9,7 +9,7 @@ jobs:
       steps:
       - uses: actions/checkout@master
       - name: Slack Notification Demo
-        uses: bryannice/gitactions-slack-notification@master
+        uses: staging
         env:
           SLACK_WEBHOOK: https://hooks.slack.com/services/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
           SLACK_TITLE: 'Slack Notification Demo'
