@@ -20,7 +20,6 @@ jobs:
           echo Environment: $(jq .fields.customfield_10032.value Context_Jira.json)
           echo Test Type: $(jq .fields.customfield_10033.value Context_Jira.json)
           echo Customer Group: $(jq .fields.customfield_10035.value Context_Jira.json)
-          echo Customer: $(jq .fields.customfield_10035.value Context_Jira.json)
           echo Customer: $(jq .fields.customfield_10035.child.value Context_Jira.json)
 
 #          cat ${{ github.workspace }}/js/a.txt ${{ github.workspace }}/js/b.txt > c.txt
