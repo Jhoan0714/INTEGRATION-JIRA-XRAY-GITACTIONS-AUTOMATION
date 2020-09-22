@@ -1,7 +1,7 @@
 on:
   push:
     #Change staging
-    branches: [master]
+    branches: [staging]
 
 name: Test Transition Issue
 
@@ -12,8 +12,25 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          cat ${{ github.workspace }}/js/a.txt ${{ github.workspace }}/js/b.txt > c.txt
-          cat c.txt
+          echo ${{ github.workspace }}
+        uses: atlassian/gajira-login@master
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+      - name: Transition issue
+        uses: atlassian/gajira-transition@master
+        with:
+          issue: "PAT-1"
+          transition: "Finalizada"
+      - name: Comment on issue
+        uses: atlassian/gajira-comment@master
+        with:
+          issue: "PAT-1"
+          comment: "Test"
+#          cat ${{ github.workspace }}/js/a.txt ${{ github.workspace }}/js/b.txt > c.txt
+#          cat c.txt
 #          cd js
 #          cat b.txt
 
