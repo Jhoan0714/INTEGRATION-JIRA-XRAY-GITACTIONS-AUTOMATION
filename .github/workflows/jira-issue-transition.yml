@@ -17,7 +17,12 @@ jobs:
           JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
       - run: |
           curl -u ${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }} ${{ secrets.JIRA_BASE_URL }}/rest/api/2/issue/PAT-1 | jq . > Context_Jira.json
-          cat Context_Jira.json
+          echo Environment: $(jq .fields.customfield_10032.value Context_Jira.json)
+          echo Test Type: $(jq .fields.customfield_10033.value Context_Jira.json)
+          echo Customer Group: $(jq .fields.customfield_10035.value Context_Jira.json)
+          echo Customer: $(jq .fields.customfield_10035.value Context_Jira.json)
+          echo Customer: $(jq .fields.customfield_10035.child.value Context_Jira.json)
+
 #          cat ${{ github.workspace }}/js/a.txt ${{ github.workspace }}/js/b.txt > c.txt
 #          cat c.txt
 #          cd js
