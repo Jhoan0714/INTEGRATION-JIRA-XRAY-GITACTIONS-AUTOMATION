@@ -12,26 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |
-          echo ${{ github.workspace }}
-          echo ${{ secrets.JIRA_BASE_URL }}
-          echo ${{ secrets.JIRA_USER_EMAIL }}
-          echo ${{ secrets.JIRA_API_TOKEN }}
-      - uses: atlassian/gajira-login@master
-        env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_USER_EMAIL: ${{ secrets.JIRA_USER_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-
-      - name: Transition issue
-        uses: atlassian/gajira-transition@master
-        with:
-          issue: "PAT-1"
-          transition: "Done"
-      - name: Comment on issue
-        uses: atlassian/gajira-comment@master
-        with:
-          issue: "PAT-1"
-          comment: "Test"
+          curl -s ${{ secrets.JIRA_USER_EMAIL }}:${{ secrets.JIRA_API_TOKEN }} ${{ secrets.JIRA_USER_EMAIL }}/rest/api/latest/issue/PAT-1 | jq . > Context_Jira.json
+          cat Context_Jira.json
 #          cat ${{ github.workspace }}/js/a.txt ${{ github.workspace }}/js/b.txt > c.txt
 #          cat c.txt
 #          cd js
