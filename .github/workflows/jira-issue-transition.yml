@@ -13,6 +13,9 @@ jobs:
       - uses: actions/checkout@v2
       - run: |
           echo ${{ github.workspace }}
+          echo ${{ secrets.JIRA_BASE_URL }}
+          echo ${{ secrets.JIRA_USER_EMAIL }}
+          echo ${{ secrets.JIRA_API_TOKEN }}
       - uses: atlassian/gajira-login@master
         env:
           JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
